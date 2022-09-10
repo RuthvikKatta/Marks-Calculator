@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MajorProject by Katta Ruthvik</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600;700&display=swap');
+            body{
+                background: radial-gradient(#434343 20%, black 100%);
+                display: flex;
+                min-height: 90vh;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                color: white;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 600;
+            }
+            .input input,.result input{
+                outline: none;
+                border: 1px solid rgba(255,255,255,0.2);
+                border-radius: 15px;
+                font-weight: bold;
+                box-shadow: inset 0 0 25px rgba(0, 0, 0,0.2);
+                padding: 5px;
+                padding-left: 20px;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 700;
+            }
+            .result{
+                display: flex;
+                gap:15px;
+                align-items: center;
+            }
+            .box
+            {
+                position: relative;
+                padding: 50px;
+                width: 580px;
+                height: 420px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: rgba(255,255,255,0.1);
+                border-radius: 6px;
+                box-shadow: 0 5px 35px rgba(0, 0, 0,0.2);
+            }
+            .box::after
+            {
+                content: '';
+                position: absolute;
+                top: 7px;
+                left: 7px;
+                right: 7px;
+                bottom: 7px;
+                border-radius: 5px;
+                pointer-events: none;
+                background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.1) 15%, transparent 50%, transparent 85%,rgba(255,255,255,0.3) 100%);
+            } 
+            .button{
+                display: flex;
+                gap:20px;
+                margin-top: 10px;
+            }
+            .button input{
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 700;
+                font-size: 16px;
+                padding: 8px 25px;
+                border-radius:25px;
+                border : none;
+                cursor: pointer;
+            }
+            .wrapper{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height:100%;
+                display: grid;
+                place-items: center;
+                background: radial-gradient(#434343 20%, black 100%);
+            }
+            .lds-ripple {
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+            .lds-ripple div {
+                position: absolute;
+                border: 4px solid #fff;
+                opacity: 1;
+                border-radius: 50%;
+                animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+            }
+            .lds-ripple div:nth-child(2) {
+                animation-delay: -0.5s;
+            }
+            @keyframes lds-ripple {
+                0% {
+                    top: 36px;
+                    left: 36px;
+                    width: 0;
+                    height: 0;
+                    opacity: 0;
+                }
+                4.9% {
+                    top: 36px;
+                    left: 36px;
+                    width: 0;
+                    height: 0;
+                    opacity: 0;
+                }
+                5% {
+                    top: 36px;
+                    left: 36px;
+                    width: 0;
+                    height: 0;
+                    opacity: 1;
+                }
+                100% {
+                    top: 0px;
+                    left: 0px;
+                    width: 72px;
+                    height: 72px;
+                    opacity: 0;
+                }
+            }
+        </style>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+        <script>
+            function findTotal(){
+            var arr = document.getElementsByName("IA") ;
+            var tot=0;
+            var average;
+            for(var i=0;i<arr.length;i++){
+                if(parseInt(arr[i].value)){
+                    tot += parseInt(arr[i].value) ;
+                    average = tot/(i+1);} 
+            } 
+            document.getElementById('total').value = tot+" / 150";
+            document.getElementById("average").value = average.toFixed(3);
+            }
+            // loading animation
+            $(window).on('load', function () {  
+                $(".wrapper").fadeOut("slow");  
+            }); 
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <h2>Internal Marks</h2>
+            <br>
+            <div class="input">
+                IA - 1 : <input type="text" name="IA" id="IA1"/><br> <br>
+                IA - 2 : <input type="text" name="IA" id="IA2"/><br> <br>
+                IA - 3 : <input type="text" name="IA" id="IA3"/><br> <br>
+            </div>
+            <div class="button">
+                <input type="button" name="Submit" value="Submit" onclick="findTotal()">
+                <input type="button" name="Home" value="Home" onclick="history.back()">
+            </div>
+            <br><br>
+            <div class="result">
+            Total : <input type="text" name="total" id="total">
+            Average : <input type="text" name="average" id="average">
+            </div>
+    </div>
+    </body>
+</html>
